@@ -1,0 +1,345 @@
+@import './variables.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== RESET BÁSICO ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== ESTILOS GERAIS ===== */
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Inter', 'Lato', Arial, sans-serif;
+  min-height: 100vh;
+  letter-spacing: 0.01em;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* ===== TIPOGRAFIA ===== */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-primary);
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+  font-weight: 600;
+}
+
+/* ===== LINKS ===== */
+a {
+  color: var(--color-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+/* ===== BOTÕES ===== */
+button, .btn {
+  background: var(--color-secondary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.75em 2em;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+  font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+  opacity: 1 !important;
+}
+
+button:hover, .btn:hover {
+  background: var(--color-primary);
+  color: var(--color-secondary);
+}
+
+/* ===== LAYOUT ===== */
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-md);
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.container.no-padding {
+  padding: var(--spacing-xl) 0;
+}
+
+.section {
+  margin-bottom: var(--spacing-2xl);
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-xl) var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  border: 1px solid #ececec;
+}
+
+/* ===== UTILITÁRIOS ===== */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 8px;
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-secondary);
+  border-radius: 4px;
+}
+
+/* ===== BACKGROUND ===== */
+.home-bg {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  background-image:
+    linear-gradient(rgba(247, 247, 248, 0.92), rgba(247, 247, 248, 0.92)),
+    url("/balanca.jpg");
+  background-repeat: repeat;
+  background-size: 320px 240px;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+  padding-top: 40px; /* MENOR no mobile */
+}
+
+@media (min-width: 768px) {
+  .home-bg {
+    padding-top: 80px; /* mantém no desktop */
+  }
+}
+
+/* ===== HERO SECTION ===== */
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px 30px; /* AINDA MENOR no mobile */
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.hero-content {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.hero-content h1 {
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  margin-bottom: 20px;
+}
+
+.hero-section .hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-section .hero-image img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+/* DESKTOP */
+@media (min-width: 768px) {
+  .hero-section {
+    flex-direction: row;
+    text-align: left;
+    padding: 100px 60px 60px;
+    gap: 4rem;
+    align-items: center;
+    min-height: 85vh;
+  }
+  
+  .hero-content {
+    text-align: left;
+    margin-bottom: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    max-width: 700px;
+  }
+  
+  .hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 100px 20px 30px;
+  }
+
+  .hero-section .hero-content {
+    text-align: center;
+  }
+
+  .hero-section .hero-image {
+    margin-top: 20px;
+  }
+}
+
+/* ===== HEADER FIXES ===== */
+header {
+  overflow: hidden;
+  max-width: 100vw;
+  box-sizing: border-box;
+  background: #ffffff !important;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+header a[href="#contato"] {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+}
+
+/* Garantir que o conteúdo não role por cima do header */
+body {
+  padding-top: 80px;
+}
+
+/* Header colado no topo */
+header {
+  top: 0 !important;
+  margin: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (min-width: 768px) {
+  .cards-row {
+    display: flex;
+    gap: var(--spacing-xl);
+  }
+  
+  .card {
+    flex: 1;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding-left: var(--spacing-sm);
+    padding-right: var(--spacing-sm);
+    max-width: 100%;
+  }
+  
+  .cards-row {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .section {
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .card {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+  
+  .home-bg {
+    background-size: 200px 150px;
+    background-attachment: scroll;
+  }
+  
+  /* Header mobile */
+  header {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    height: 80px !important;
+  }
+  
+  header a[href="#contato"] {
+    font-size: 0.75rem !important;
+    padding: 0.35em 0.7em !important;
+    min-width: 85px !important;
+    white-space: nowrap !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+  }
+  
+  .card {
+    padding: var(--spacing-sm) 0.8rem;
+  }
+  
+  /* Header mobile pequeno */
+  header {
+    padding-left: 0.7rem !important;
+    padding-right: 0.7rem !important;
+  }
+  
+  header a[href="#contato"] {
+    font-size: 0.7rem !important;
+    padding: 0.3em 0.6em !important;
+    min-width: 80px !important;
+  }
+}
+
+/* Corrige o espaço excessivo no mobile causado pelo home-bg */
+@media (max-width: 768px) {
+  .home-bg {
+    padding-top: 20px !important; /* reduz bastante no mobile */
+  }
+}
+
+/* Ajuste do tamanho da fonte do h2 "Fale Conosco" */
+@media (min-width: 768px) {
+  h2[style*="Fale Conosco"] {
+    font-size: 32px !important;
+  }
+}
+
+/* Ajuste da largura máxima dos cards apenas no desktop */
+@media (min-width: 768px) {
+  .max-w-4xl {
+    max-width: 56rem !important;
+  }
+  
+  /* Sobe a hero section 1,5cm no desktop */
+  .hero-section {
+    margin-top: -1.5cm !important;
+  }
+}
+
+ 

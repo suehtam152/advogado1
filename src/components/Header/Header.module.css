@@ -1,0 +1,84 @@
+.header {
+  width: 100%;
+  background: #ffffff; /* ✅ Fundo branco sólido */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* ✅ logo à esquerda, botão à direita */
+  padding: 0.5rem clamp(1rem, 4vw, 2rem);
+  position: fixed; /* ✅ Fixo no topo */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100; /* ✅ garante que fique sobre o conteúdo */
+  box-sizing: border-box;
+  min-height: var(--header-height);
+  max-width: 100vw;
+  box-shadow: var(--shadow-sm); /* ✅ pequena sombra para separar */
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.logo {
+  border-radius: var(--radius-sm);
+  background-color: #ffffff;
+  flex-shrink: 0;
+}
+
+.logoText {
+  font-weight: 700;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  color: var(--color-primary);
+  white-space: nowrap; /* ✅ evita quebra do texto */
+}
+
+.contactButton {
+  font-weight: 700;
+  padding: 0.4em 0.8em;
+  font-size: 0.85rem;
+  margin-left: auto; /* ✅ empurra botão para a extrema direita */
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* ✅ Responsividade */
+@media (max-width: 767px) {
+  .header {
+    padding: 0.5rem 1rem;
+  }
+  
+  .logoText {
+    font-size: 1.4rem; /* ✅ reduz um pouco no mobile */
+  }
+
+  .contactButton {
+    font-size: 0.75rem;
+    padding: 0.35em 0.7em;
+    min-width: 85px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 0.5rem 0.7rem;
+  }
+
+  .logo {
+    width: 55px !important;
+    height: 55px !important;
+  }
+
+  .logoText {
+    font-size: 1.1rem;
+  }
+
+  .contactButton {
+    font-size: 0.7rem;
+    padding: 0.3em 0.6em;
+    min-width: 80px;
+  }
+}

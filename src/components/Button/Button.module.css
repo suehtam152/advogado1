@@ -1,0 +1,84 @@
+.button {
+  background: var(--color-secondary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.75em 2em;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+  font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  font-weight: 700;
+}
+
+.button:hover {
+  background: var(--color-primary);
+  color: var(--color-secondary);
+  text-decoration: none;
+}
+
+/* Variantes */
+.button.primary {
+  background: var(--color-secondary);
+}
+
+.button.secondary {
+  background: var(--color-primary);
+  color: var(--color-secondary);
+}
+
+.button.secondary:hover {
+  background: var(--color-secondary);
+  color: #fff;
+}
+
+.button.outline {
+  background: transparent;
+  color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
+}
+
+.button.outline:hover {
+  background: var(--color-secondary);
+  color: #fff;
+}
+
+/* Tamanhos */
+.button.small {
+  padding: 0.5em 1.5em;
+  font-size: 0.9rem;
+}
+
+.button.large {
+  padding: 1em 2.5em;
+  font-size: 1.1rem;
+}
+
+/* Estados */
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.button:disabled:hover {
+  background: var(--color-secondary);
+  color: #fff;
+}
+
+/* Responsividade */
+@media (max-width: 767px) {
+  .button {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .button.small {
+    font-size: 0.85rem;
+    padding: 0.4em 1.2em;
+  }
+} 

@@ -1,0 +1,17 @@
+.main {
+  min-height: 80vh;
+  padding-top: var(--header-height);
+}
+
+.footer {
+  text-align: center;
+  padding: 15px 0;
+  background: white;
+  border-top: 1px solid #e5e5e5;
+  margin-top: var(--spacing-2xl);
+}
+
+.footerText {
+  color: var(--color-detail);
+  font-size: 0.9rem;
+} 

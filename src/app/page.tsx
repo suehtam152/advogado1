@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { FaWhatsapp, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
@@ -18,6 +18,33 @@ const diferenciais = [
 ];
 
 export default function Home() {
+  useEffect(() => {
+    const updateLayout = () => {
+      const formLayout = document.getElementById('form-layout');
+      const fieldsContainer = document.getElementById('fields-container');
+      const textareaContainer = document.getElementById('textarea-container');
+      
+      if (formLayout && fieldsContainer && textareaContainer) {
+        if (window.innerWidth >= 768) {
+          // Desktop: layout lado a lado
+          formLayout.style.flexDirection = 'row';
+          fieldsContainer.style.width = '33.333%';
+          textareaContainer.style.width = '66.667%';
+        } else {
+          // Mobile: layout empilhado
+          formLayout.style.flexDirection = 'column';
+          fieldsContainer.style.width = '100%';
+          textareaContainer.style.width = '100%';
+        }
+      }
+    };
+    
+    updateLayout();
+    window.addEventListener('resize', updateLayout);
+    
+    return () => window.removeEventListener('resize', updateLayout);
+  }, []);
+
   return (
     <div className="home-bg" style={{ minHeight: '100vh', position: 'relative' }}>
       <div style={{
@@ -176,6 +203,7 @@ export default function Home() {
             gap: '1.2rem',
             boxSizing: 'border-box',
           }}
+
           onSubmit={async (e) => {
             e.preventDefault();
             const formData = new FormData(e.currentTarget);
@@ -207,8 +235,18 @@ export default function Home() {
             }
           }}
         >
-          <div style={{ display: 'flex', flexDirection: 'row', gap: '1.2rem', width: '100%' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', flex: 1 }}>
+          <div id="form-layout" style={{ 
+            display: 'flex', 
+            flexDirection: 'column', 
+            gap: '1.2rem', 
+            width: '100%'
+          }}>
+            <div id="fields-container" style={{ 
+              display: 'flex', 
+              flexDirection: 'column', 
+              gap: '1.2rem', 
+              width: '100%'
+            }}>
               <input
                 name="name"
                 type="text"
@@ -231,7 +269,9 @@ export default function Home() {
                 style={{ padding: '0.8em', borderRadius: 8, border: '1.5px solid #ececec', fontSize: 16 }}
               />
             </div>
-            <div style={{ display: 'flex', flex: 2 }}>
+            <div id="textarea-container" style={{ 
+              width: '100%'
+            }}>
               <textarea
                 name="message"
                 placeholder="Descreva brevemente sua dúvida ou situação jurídica. Ex: 'Preciso de orientação sobre um contrato', 'Tenho dúvidas sobre pensão alimentícia', etc."
@@ -241,6 +281,83 @@ export default function Home() {
               />
             </div>
           </div>
+          <div style={{ marginTop: '1rem', padding: '1rem', background: '#f8f9fa', borderRadius: '8px', border: '1px solid #e9ecef' }}>
+            <div style={{ marginBottom: '1rem' }}>
+              <p style={{ fontSize: '14px', color: '#495057', marginBottom: '0.5rem' }}>
+                <strong>Termo de Responsabilidade:</strong> O Juston atua exclusivamente como plataforma de intermediação e direcionamento de potenciais clientes a advogados e escritórios de advocacia cadastrados.
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  const termsDiv = document.getElementById('full-terms');
+                  if (termsDiv) {
+                    termsDiv.style.display = termsDiv.style.display === 'none' ? 'block' : 'none';
+                  }
+                }}
+                style={{
+                  background: 'transparent',
+                  border: '1px solid #6c757d',
+                  color: '#6c757d',
+                  padding: '0.5rem 1rem',
+                  borderRadius: '4px',
+                  fontSize: '14px',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s'
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.background = '#6c757d';
+                  e.currentTarget.style.color = 'white';
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.background = 'transparent';
+                  e.currentTarget.style.color = '#6c757d';
+                }}
+              >
+                Ler mais
+              </button>
+            </div>
+            
+            <div id="full-terms" style={{ display: 'none', fontSize: '12px', color: '#6c757d', lineHeight: '1.4', maxHeight: '200px', overflowY: 'auto', padding: '1rem', background: 'white', borderRadius: '4px', border: '1px solid #dee2e6' }}>
+              <h4 style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '0.5rem', color: '#495057' }}>Termo de Responsabilidade</h4>
+              <p style={{ marginBottom: '0.5rem' }}>O presente Termo de Responsabilidade ("Termo") estabelece as condições de uso do site Juston, que atua exclusivamente como plataforma de intermediação e direcionamento de potenciais clientes a advogados e escritórios de advocacia cadastrados.</p>
+              
+              <h5 style={{ fontSize: '13px', fontWeight: 'bold', marginBottom: '0.3rem', marginTop: '0.8rem', color: '#495057' }}>1. Natureza do Serviço</h5>
+              <p style={{ marginBottom: '0.5rem' }}>O Juston não é um escritório de advocacia, não presta serviços jurídicos e não mantém vínculo empregatício ou societário com os advogados indicados. O site atua apenas como um meio tecnológico para facilitar o contato entre usuários e profissionais especializados.</p>
+              
+              <h5 style={{ fontSize: '13px', fontWeight: 'bold', marginBottom: '0.3rem', marginTop: '0.8rem', color: '#495057' }}>2. Limitação de Responsabilidade</h5>
+              <p style={{ marginBottom: '0.5rem' }}>O Juston não se responsabiliza, direta ou indiretamente, por:</p>
+              <ul style={{ marginLeft: '1rem', marginBottom: '0.5rem' }}>
+                <li>Conduta profissional, ética ou pessoal dos advogados indicados;</li>
+                <li>Prazos processuais, administrativos ou contratuais;</li>
+                <li>Valores cobrados pelos profissionais;</li>
+                <li>Serviços mal prestados ou não executados;</li>
+                <li>Informações incorretas ou omissas fornecidas pelos advogados ou usuários;</li>
+                <li>Qualquer prejuízo, dano material, moral ou financeiro decorrente da relação entre cliente e advogado.</li>
+              </ul>
+              
+              <h5 style={{ fontSize: '13px', fontWeight: 'bold', marginBottom: '0.3rem', marginTop: '0.8rem', color: '#495057' }}>3. Relação Cliente–Advogado</h5>
+              <p style={{ marginBottom: '0.5rem' }}>Toda e qualquer negociação, contratação, definição de honorários, forma de pagamento, escopo e execução dos serviços jurídicos é de responsabilidade exclusiva do advogado e do cliente. O Juston não interfere, media ou fiscaliza tais tratativas.</p>
+              
+              <h5 style={{ fontSize: '13px', fontWeight: 'bold', marginBottom: '0.3rem', marginTop: '0.8rem', color: '#495057' }}>4. Verificação Profissional</h5>
+              <p style={{ marginBottom: '0.5rem' }}>O Juston pode, a seu critério, solicitar comprovação de inscrição na OAB e demais informações para cadastro, porém não garante a veracidade ou atualização constante desses dados.</p>
+              
+              <h5 style={{ fontSize: '13px', fontWeight: 'bold', marginBottom: '0.3rem', marginTop: '0.8rem', color: '#495057' }}>5. Aceitação do Termo</h5>
+              <p style={{ marginBottom: '0.5rem' }}>Ao utilizar o site, o usuário declara estar ciente e de acordo com todas as cláusulas deste Termo, reconhecendo que o Juston é apenas uma ferramenta de conexão e não possui responsabilidade sobre o resultado final dos serviços contratados.</p>
+            </div>
+            
+            <div style={{ marginTop: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <input
+                type="checkbox"
+                id="accept-terms"
+                required
+                style={{ width: '16px', height: '16px' }}
+              />
+              <label htmlFor="accept-terms" style={{ fontSize: '14px', color: '#495057', cursor: 'pointer' }}>
+                Li e aceito os termos de responsabilidade
+              </label>
+            </div>
+          </div>
+          
           <button
             className="btn"
             type="submit"

@@ -12,9 +12,9 @@
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-lg);
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: var(--spacing-md) !important;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
@@ -23,11 +23,11 @@
 .card {
   background: #fff;
   border-radius: var(--radius-md);
-  padding: var(--spacing-md);
-  min-height: 160px;
+  padding: var(--spacing-sm);
+  min-height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 100%;
   box-sizing: border-box;
 }
@@ -35,23 +35,23 @@
 .cardTitle {
   font-weight: 600;
   color: var(--color-primary);
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: 0.3rem;
 }
 
 .cardDescription {
   color: var(--color-detail);
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
 /* Responsividade */
 @media (max-width: 767px) {
   .grid {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
+    grid-template-columns: 1fr !important;
+    gap: var(--spacing-sm);
   }
-  
+
   .title {
     text-align: left;
     padding-left: 0;
   }
-} 
+}

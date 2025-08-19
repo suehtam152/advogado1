@@ -12,14 +12,36 @@ export default function Areas() {
   return (
     <section className={`container section ${styles.section}`}>
       <h2 className={styles.title}>Áreas de Atuação</h2>
-      <div className={styles.grid}>
+      <div
+        className={styles.grid}
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: '1rem',
+          maxWidth: '1200px',
+          margin: '0 auto',
+          width: '100%'
+        }}
+      >
         {areas.map((area) => (
-          <div className={styles.card} key={area.title}>
-            <h3 className={styles.cardTitle}>{area.title}</h3>
+          <div
+            className={styles.card}
+            key={area.title}
+            style={{
+              padding: '0.75rem',
+              minHeight: 'auto',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-start'
+            }}
+          >
+            <h3 className={styles.cardTitle} style={{ marginBottom: '0.3rem' }}>
+              {area.title}
+            </h3>
             <p className={styles.cardDescription}>{area.desc}</p>
           </div>
         ))}
       </div>
     </section>
   );
-} 
+}

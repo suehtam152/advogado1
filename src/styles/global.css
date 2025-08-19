@@ -10,6 +10,37 @@
   box-sizing: border-box;
 }
 
+/* ===== THEME OVERRIDES: Bootstrap cores primárias/sucesso ===== */
+:root {
+  --bs-primary: #bfa181;
+  --bs-primary-rgb: 191, 161, 129;
+  --bs-success: #bfa181;
+  --bs-success-rgb: 191, 161, 129;
+}
+
+/* Força componentes Bootstrap a usarem #bfa181 */
+.btn-primary {
+  --bs-btn-bg: #bfa181;
+  --bs-btn-border-color: #bfa181;
+  --bs-btn-hover-bg: #a98c6f;
+  --bs-btn-hover-border-color: #a98c6f;
+  --bs-btn-active-bg: #a98c6f;
+  --bs-btn-active-border-color: #a98c6f;
+}
+
+.btn-success {
+  --bs-btn-bg: #bfa181;
+  --bs-btn-border-color: #bfa181;
+  --bs-btn-hover-bg: #a98c6f;
+  --bs-btn-hover-border-color: #a98c6f;
+  --bs-btn-active-bg: #a98c6f;
+  --bs-btn-active-border-color: #a98c6f;
+}
+
+.text-primary, .text-success { color: #bfa181 !important; }
+.bg-primary, .bg-success { background-color: #bfa181 !important; }
+.border-primary, .border-success { border-color: #bfa181 !important; }
+
 /* ===== ESTILOS GERAIS ===== */
 body {
   background: var(--color-bg);
@@ -30,6 +61,9 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
 }
 
+/* h2 em negrito */
+h2 { font-weight: 700 !important; }
+
 /* ===== LINKS ===== */
 a {
   color: var(--color-secondary);
@@ -42,8 +76,8 @@ a:hover {
   text-decoration: underline;
 }
 
-/* ===== BOTÕES ===== */
-button, .btn {
+/* ===== BOTÕES (escopo customizado para não conflitar com Bootstrap) ===== */
+.juston-btn {
   background: var(--color-secondary);
   color: #fff;
   border: none;
@@ -57,7 +91,7 @@ button, .btn {
   opacity: 1 !important;
 }
 
-button:hover, .btn:hover {
+.juston-btn:hover {
   background: var(--color-primary);
   color: var(--color-secondary);
 }
@@ -172,7 +206,7 @@ button:hover, .btn:hover {
     padding: 100px 60px 60px;
     gap: 4rem;
     align-items: center;
-    min-height: 85vh;
+    min-height: 50vh;
   }
   
   .hero-content {
@@ -339,6 +373,19 @@ header {
   /* Sobe a hero section 1,5cm no desktop */
   .hero-section {
     margin-top: -1.5cm !important;
+  }
+}
+
+/* Ajustes específicos para Bootstrap */
+.row.g-3 {
+  margin: 0 auto;
+  max-width: 72rem;
+}
+
+/* Ajustes para mobile */
+@media (max-width: 767px) {
+  .row.g-3 {
+    margin: 0 1rem;
   }
 }
 

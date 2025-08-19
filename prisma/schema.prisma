@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,6 +5,36 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  LAWYER
+  CLIENT
+}
+
+model User {
+  id           Int       @id @default(autoincrement())
+  name         String
+  email        String    @unique
+  passwordHash String
+  role         Role      @default(CLIENT)
+  createdAt    DateTime  @default(now())
+  documents    Document[] @relation("UserDocuments")
+  receivedDocs Document[] @relation("ClientDocuments")
+}
+
+model Document {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  fileUrl     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  lawyer      User?    @relation("UserDocuments", fields: [lawyerId], references: [id])
+  lawyerId    Int?
+  client      User?    @relation("ClientDocuments", fields: [clientId], references: [id])
+  clientId    Int?
 }
 
 model Contact {
@@ -28,7 +52,7 @@ model Message {
   createdAt  DateTime @default(now())
   contact    Contact  @relation(fields: [contactId], references: [id])
   contactId  Int
-  fromClient Boolean  // true se foi enviado pelo cliente, false se foi pelo advogado
+  fromClient Boolean
 }
 
 model Feedback {

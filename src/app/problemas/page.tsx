@@ -1,5 +1,6 @@
 'use client';
 import React, { useRef } from 'react';
+import Header from '../../components/Header';
 
 const cards = [
   {
@@ -69,6 +70,7 @@ export default function Problemas() {
       position: 'relative',
       overflowX: 'hidden',
     }}>
+      <Header showContactButton={false} />
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Poppins:wght@400;700;900&display=swap');
         .card-acess {

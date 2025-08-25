@@ -72,17 +72,17 @@ export default function AdminPage() {
 	}
 
 	return (
-		<div style={{ minHeight: '100vh', background: '#f5f5f5', padding: '2rem' }}>
-			<div style={{ maxWidth: 1200, margin: '0 auto' }}>
-				<h1 style={{ color: '#1a1a1a', marginBottom: '1rem', fontWeight: 800, fontSize: 26 }}>Painel Administrativo</h1>
+		<div style={{ minHeight: '100vh', background: '#f5f5f5', overflow: 'hidden' }}>
+			<div className="container-fluid px-2 px-md-3" style={{ maxWidth: 1200, margin: '0 auto', paddingTop: '1rem', paddingBottom: '2rem' }}>
+				<h1 className="h3 h-md-2" style={{ color: '#1a1a1a', marginBottom: '0.75rem', fontWeight: 800, fontSize: 'clamp(1.25rem, 4vw, 1.5rem)' }}>Painel Administrativo</h1>
 
-				<div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
-					<button className={`btn btn-sm ${activeTab === 'users' ? 'btn-primary' : 'btn-light'}`} onClick={() => setActiveTab('users')}>Usuários</button>
-					<button className={`btn btn-sm ${activeTab === 'documents' ? 'btn-primary' : 'btn-light'}`} onClick={() => setActiveTab('documents')}>Documentos</button>
-					<button className={`btn btn-sm ${activeTab === 'contacts' ? 'btn-primary' : 'btn-light'}`} onClick={() => setActiveTab('contacts')}>Contatos</button>
+				<div className="d-flex flex-column flex-sm-row flex-wrap gap-1 gap-sm-2" style={{ marginBottom: 16 }}>
+					<button className={`btn btn-sm ${activeTab === 'users' ? 'btn-primary' : 'btn-light'} flex-fill flex-sm-grow-0`} onClick={() => setActiveTab('users')}>Usuários</button>
+					<button className={`btn btn-sm ${activeTab === 'documents' ? 'btn-primary' : 'btn-light'} flex-fill flex-sm-grow-0`} onClick={() => setActiveTab('documents')}>Documentos</button>
+					<button className={`btn btn-sm ${activeTab === 'contacts' ? 'btn-primary' : 'btn-light'} flex-fill flex-sm-grow-0`} onClick={() => setActiveTab('contacts')}>Contatos</button>
 				</div>
 
-				<div style={{ background: '#fff', borderRadius: 12, padding: 16 }}>
+				<div style={{ background: '#fff', borderRadius: 12, padding: '0.75rem' }}>
 					{loading ? (
 						<p>Carregando...</p>
 					) : activeTab === 'users' ? (
@@ -101,30 +101,32 @@ export default function AdminPage() {
 function UserTab({ users, onReload }: { users: User[]; onReload: () => void }) {
 	return (
 		<div>
-			<div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12 }}>
+			<div className="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center" style={{ gap: 8, marginBottom: 12 }}>
 				<h2 style={{ fontSize: 18, fontWeight: 700, margin: 0 }}>Usuários</h2>
-				<a className="btn btn-sm btn-success" href="/admin/users/new">Novo usuário</a>
+				<a className="btn btn-sm btn-success w-100 w-sm-auto" href="/admin/users/new">Novo usuário</a>
 			</div>
-			<table className="table">
+			<div className="table-responsive" style={{ overflow: 'visible' }}>
+				<table className="table table-sm align-middle" style={{ minWidth: 'auto', width: '100%', fontSize: '0.875rem' }}>
 				<thead>
 					<tr>
-						<th>Nome</th>
-						<th>Email</th>
-						<th>Papel</th>
-						<th>Criado em</th>
+						<th style={{ whiteSpace: 'nowrap' }}>Nome</th>
+						<th style={{ whiteSpace: 'nowrap' }}>Email</th>
+						<th style={{ whiteSpace: 'nowrap' }}>Papel</th>
+						<th style={{ whiteSpace: 'nowrap' }}>Criado em</th>
 					</tr>
 				</thead>
 				<tbody>
 					{users.map((u) => (
 						<tr key={u.id}>
-							<td>{u.name}</td>
-							<td>{u.email}</td>
-							<td>{u.role}</td>
-							<td>{new Date(u.createdAt).toLocaleDateString('pt-BR')}</td>
+							<td style={{ wordBreak: 'break-word' }}>{u.name}</td>
+							<td style={{ wordBreak: 'break-word' }}>{u.email}</td>
+							<td style={{ whiteSpace: 'nowrap' }}>{u.role}</td>
+							<td style={{ whiteSpace: 'nowrap' }}>{new Date(u.createdAt).toLocaleDateString('pt-BR')}</td>
 						</tr>
 					))}
 				</tbody>
-			</table>
+				</table>
+			</div>
 		</div>
 	);
 }
@@ -132,30 +134,32 @@ function UserTab({ users, onReload }: { users: User[]; onReload: () => void }) {
 function DocumentTab({ documents, onReload }: { documents: DocumentItem[]; onReload: () => void }) {
 	return (
 		<div>
-			<div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12 }}>
+			<div className="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center" style={{ gap: 8, marginBottom: 12 }}>
 				<h2 style={{ fontSize: 18, fontWeight: 700, margin: 0 }}>Documentos</h2>
-				<a className="btn btn-sm btn-success" href="/admin/documents/new">Novo documento</a>
+				<a className="btn btn-sm btn-success w-100 w-sm-auto" href="/admin/documents/new">Novo documento</a>
 			</div>
-			<table className="table">
+			<div className="table-responsive" style={{ overflow: 'visible' }}>
+				<table className="table table-sm align-middle" style={{ minWidth: 'auto', width: '100%', fontSize: '0.875rem' }}>
 				<thead>
 					<tr>
-						<th>Título</th>
-						<th>Cliente</th>
-						<th>Arquivo</th>
-						<th>Criado em</th>
+						<th style={{ whiteSpace: 'nowrap' }}>Título</th>
+						<th style={{ whiteSpace: 'nowrap' }}>Cliente</th>
+						<th style={{ whiteSpace: 'nowrap' }}>Arquivo</th>
+						<th style={{ whiteSpace: 'nowrap' }}>Criado em</th>
 					</tr>
 				</thead>
 				<tbody>
 					{documents.map((d) => (
 						<tr key={d.id}>
-							<td>{d.title}</td>
-							<td>{d.client?.name || '-'}</td>
-							<td><a href={d.fileUrl} target="_blank" rel="noreferrer">baixar</a></td>
-							<td>{new Date(d.createdAt).toLocaleDateString('pt-BR')}</td>
+							<td style={{ wordBreak: 'break-word' }}>{d.title}</td>
+							<td style={{ wordBreak: 'break-word' }}>{d.client?.name || '-'}</td>
+							<td style={{ whiteSpace: 'nowrap' }}><a href={d.fileUrl} target="_blank" rel="noreferrer">baixar</a></td>
+							<td style={{ whiteSpace: 'nowrap' }}>{new Date(d.createdAt).toLocaleDateString('pt-BR')}</td>
 						</tr>
 					))}
 				</tbody>
-			</table>
+				</table>
+			</div>
 		</div>
 	);
 }
@@ -163,29 +167,31 @@ function DocumentTab({ documents, onReload }: { documents: DocumentItem[]; onRel
 function ContactTab({ contacts }: { contacts: Contact[] }) {
 	return (
 		<div>
-			<h2 style={{ fontSize: 18, fontWeight: 700 }}>Contatos Recebidos</h2>
-			<table className="table">
+			<h2 style={{ fontSize: 18, fontWeight: 700, marginBottom: 12 }}>Contatos Recebidos</h2>
+			<div className="table-responsive" style={{ overflow: 'visible' }}>
+				<table className="table table-sm align-middle" style={{ minWidth: 'auto', width: '100%', fontSize: '0.875rem' }}>
 				<thead>
 					<tr>
-						<th>Nome</th>
-						<th>Email</th>
-						<th>Telefone</th>
-						<th>Data</th>
-						<th>Mensagem</th>
+						<th style={{ whiteSpace: 'nowrap' }}>Nome</th>
+						<th style={{ whiteSpace: 'nowrap' }}>Email</th>
+						<th style={{ whiteSpace: 'nowrap' }}>Telefone</th>
+						<th style={{ whiteSpace: 'nowrap' }}>Data</th>
+						<th style={{ whiteSpace: 'nowrap' }}>Mensagem</th>
 					</tr>
 				</thead>
 				<tbody>
 					{contacts.map((c) => (
 						<tr key={c.id}>
-							<td>{c.name}</td>
-							<td>{c.email}</td>
-							<td>{c.phone}</td>
-							<td>{new Date(c.createdAt).toLocaleString('pt-BR')}</td>
-							<td>{c.messages[0]?.content || '—'}</td>
+							<td style={{ wordBreak: 'break-word' }}>{c.name}</td>
+							<td style={{ wordBreak: 'break-word' }}>{c.email}</td>
+							<td style={{ whiteSpace: 'nowrap' }}>{c.phone}</td>
+							<td style={{ whiteSpace: 'nowrap' }}>{new Date(c.createdAt).toLocaleString('pt-BR')}</td>
+							<td style={{ wordBreak: 'break-word', maxWidth: '200px' }}>{c.messages[0]?.content || '—'}</td>
 						</tr>
 					))}
 				</tbody>
-			</table>
+				</table>
+			</div>
 		</div>
 	);
 } 

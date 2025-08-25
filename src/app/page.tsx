@@ -2,6 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { FaWhatsapp, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import Header from '../components/Header';
 
 const areas = [
   { title: 'Direito Civil', desc: 'Contratos, responsabilidade civil, indenizações e mais.' },
@@ -32,20 +33,7 @@ export default function Home() {
         pointerEvents: 'none',
       }} />
       
-      <header className="fixed top-0 left-0 w-full bg-white shadow z-50 h-20 flex items-center justify-between px-4 md:px-8">
-        <div className="flex items-center gap-3" style={{ marginLeft: '0.5cm' }}>
-          <Image src="/logomarca-1.png" alt="Juston - logomarca" width={60} height={60} className="rounded-lg bg-white" />
-          <span className="font-black text-xl text-gray-800" style={{ fontFamily: 'Montserrat, Inter, Arial, sans-serif', fontWeight: 900 }}>Juston</span>
-        </div>
-        <div className="flex items-center gap-2" style={{ marginRight: '0.5cm' }}>
-          <a href="/admin" className="btn btn-outline-secondary fw-bold">
-            Admin
-          </a>
-          <a href="#contato" className="btn btn-primary fw-bold">
-            Fale Conosco
-          </a>
-        </div>
-      </header>
+      <Header />
 
       <section className="hero-section relative z-10 flex flex-col md:flex-row items-center justify-between px-4 md:px-8 pt-6 md:pt-32 pb-10">
         <div className="hero-content text-center md:text-left md:w-1/2 md:flex md:flex-col md:justify-center md:h-full">
@@ -345,7 +333,7 @@ export default function Home() {
 
       <footer className="mt-4 mt-md-5" style={{ textAlign: 'center', color: '#6b7280', padding: '2rem 0 1rem 0', fontSize: 15, background: '#f7f7f8', borderTop: '1px solid #ececec', position: 'relative', zIndex: 2 }}>
         <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'center', gap: 24 }}>
-          <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" style={{ color: '#25D366', fontSize: 32, transition: 'transform 0.2s ease' }} aria-label="WhatsApp" onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.1)'} onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}><FaWhatsapp /></a>
+          <a href="https://wa.me/5571984699359" target="_blank" rel="noopener noreferrer" style={{ color: '#25D366', fontSize: 32, transition: 'transform 0.2s ease' }} aria-label="WhatsApp" onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.1)'} onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}><FaWhatsapp /></a>
           <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" style={{ color: '#C13584', fontSize: 32, transition: 'transform 0.2s ease' }} aria-label="Instagram" onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.1)'} onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}><FaInstagram /></a>
           <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" style={{ color: '#0077B5', fontSize: 32, transition: 'transform 0.2s ease' }} aria-label="LinkedIn" onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.1)'} onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}><FaLinkedin /></a>
         </div>
